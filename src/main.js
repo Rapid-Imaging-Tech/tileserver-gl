@@ -54,6 +54,14 @@ var opts = require('commander')
     '-s, --silent',
     'Less verbose output'
   )
+  .option(
+    '-l|--log_file <file>',
+    'output log file (defaults to standard out)'
+  )
+  .option(
+    '-f|--log_format <format>',
+    'define the log format:  https://github.com/expressjs/morgan#morganformat-options'
+  )
   .version(
     packageJson.version,
     '-v, --version'
@@ -73,7 +81,10 @@ var startServer = function(configPath, config) {
     bind: opts.bind,
     port: opts.port,
     cors: opts.cors,
+    verbose: opts.verbose,
     silent: opts.silent,
+    logFile: opts.log_file,
+    logFormat: opts.log_format,
     publicUrl: publicUrl
   });
 };
